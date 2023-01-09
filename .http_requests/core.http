@@ -1,0 +1,25 @@
+@hostname = localhost
+@port = 9090
+@host = {{hostname}}:{{port}}
+
+
+GET http://{{host}}/api/allUsers HTTP/1.1
+
+
+###
+
+
+POST http://{{host}}/api/saveUser HTTP/1.1
+content-type: application/json
+
+{    
+    "firstName": "Ilija",
+    "lastName": "Ćaćić",
+    "username": "icacic",
+    "dateFrom": "{{$datetime iso8601}}",
+    "organization": {
+        "id": 1,
+        "code": "MPU",
+        "name": "Ministarstvo pravosuđa i uprave"
+    }
+}

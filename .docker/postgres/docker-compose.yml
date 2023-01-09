@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+    postgres:
+        image: postgres:15.1
+        container_name: hrm-postgres
+        restart: unless-stopped
+        environment:
+          - POSTGRES_USER=hrm
+          - POSTGRES_PASSWORD=admin123
+        logging:
+          options:
+            max-size: 10m
+            max-file: "3"
+        ports:
+          - '15432:5432'
+        volumes:
+          - /tmp/hrm/data/postgres-data:/var/lib/postgresql/data
+          - ../../.database/sql/create.sql:/docker-entrypoint-initdb.d/create.sql
